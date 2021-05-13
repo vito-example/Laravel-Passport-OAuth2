@@ -9,18 +9,34 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Here are a list of your clients
+                    <p>Here are a list of your clients</p>
+                    @foreach($clients as $client)
+                        <div class="py-3 text-gray-900">
+                            <h3 class="text-lg text-gray-500">
+                                {{ $client->name }}
+                            </h3>
+                            <p>
+                                {{ $client->redirect }}
+                            </p>
+                        </div>
+                    @endforeach
                 </div>
-                @foreach($clients as $client)
-                    <div class="py-3 text-gray-900">
-                        <h3 class="text-lg text-gray-500">
-                            {{ $client->name }}
-                        </h3>
-                        <p>
-                            {{ $client->redirect }}
-                        </p>
-                    </div>
-                @endforeach
+                <div class="mt-3 p-6 bg-white border-b border-gray-200">
+                    <form action="/oauth/clients" method="POST">
+                        <div>
+                            <x-label for="name">Name</x-label>
+                            <x-input type="text" name="name" placeholder="Client Name"></x-input>
+                        </div>
+                        <div class="mt-2">
+                            <x-label for="redirect">Redirect</x-label>
+                            <x-input type="text" name="redirect" placeholder="http://127.0.0.1:8000/callback"></x-input>
+                        </div>
+                        <div class="mt-3">
+                            @csrf
+                            <x-button type="submit">Create Client</x-button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
