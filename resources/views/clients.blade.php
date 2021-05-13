@@ -15,8 +15,12 @@
                             <h3 class="text-lg text-gray-500">
                                 {{ $client->name }}
                             </h3>
+                            <p>Client ID: {{ $client->id }}</p>
                             <p>
-                                {{ $client->redirect }}
+                                Redirect Url: {{ $client->redirect }}
+                            </p>
+                            <p>
+                                Secret: {{ $client->secret }}
                             </p>
                         </div>
                     @endforeach
